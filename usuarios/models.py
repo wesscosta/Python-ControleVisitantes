@@ -23,7 +23,7 @@ class UsuarioManager(BaseUserManager):
 
         return usuario
 
-    def crate_superuser(self, email, password):
+    def create_superuser(self, email, password):
 
         usuario = self.create_user(
             email = self.normalize_email(email),
