@@ -1,6 +1,23 @@
+import re
+from typing import DefaultDict
 from django.db import models
+from django.db.models.base import Model
+from django.db.models.enums import Choices
 
 class Visitante(models.Model):
+
+    STATUS_VISITANTE = [
+        ('AGUARDANDO', 'Aguardando Autorização'),
+        ('EM_VISITA','Em Visita'),
+        ('FINALIZADO', 'Visita Finalizada')
+    ]
+
+    status = models.CharField(
+        verbose_name = 'Status',
+        max_length = 10,
+        choices = STATUS_VISITANTE,
+        default = 'AGUARDANDO'
+    )
     
     nome_completo = models.CharField(
         verbose_name='Nome completo',
@@ -59,6 +76,31 @@ class Visitante(models.Model):
         verbose_name='Porteiro responsavel pelo registro',
         on_delete= models.PROTECT
     )
+
+
+    def get_horario_saida(self):
+        if self.horario_saida:
+            return self.horario_saida
+        
+        return 'Horário de saída não registrado'
+
+    def get_horario_autorizacao(self):
+        if self.horario_autozacao:
+            return self.horario_autorizacao
+        
+        return 'Visitante aguradando autorização'
+
+    def get_morador_responsavel(self):
+        if self.morador_responsavel:
+            return self.morador_responsavel
+
+        return 'Visitante aguardando autorização'
+    
+    def get_placa_veiculo(self):
+        if self.placa_veiculo:
+            return self.placa_veiculo
+
+        return 'Veiculo não registrado'
 
     class Meta:
         verbose_name = 'Visitante'
