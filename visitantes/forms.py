@@ -18,7 +18,7 @@ class VisitanteForm(forms.ModelForm):
                 'required': 'O CPF do visitante  é obrigatorio para o registro'
             },
             'data_nascimento':{
-                'required':'A data de nascimento do visitante é obrigatoria para o registro',
+                'required':'A data de nascimento do visitante é obrigatorio para o registro',
                 'invalid':'Por favor, informe um formato valido para a data de nascimento (DD/MM/AAAA)'
             },
             'numero_casa':{
