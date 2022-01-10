@@ -1,3 +1,4 @@
+from typing_extensions import Required
 from django import forms
 from django.db import models
 from django import forms
@@ -25,3 +26,18 @@ class VisitanteForm(forms.ModelForm):
                 'required':'Por favor, informe o numero da casa a ser visitada'
             }
         }
+
+class AutorizaVisitanteForm(forms.ModelForm):
+    morador_responsavel = forms.CharField(required=True)
+
+    class Meta:
+        model = Visitante
+        fields = [
+            'morador_responsavel'
+        ]
+        error_messages = {
+            'morador_responsavel':{
+                'required': 'Por favor, informar o nome do morador reponsavel por autorizar a entrada do visitante'
+            }
+        }
+        

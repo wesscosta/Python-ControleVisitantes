@@ -71,7 +71,7 @@ class Visitante(models.Model):
         blank=True,
     )
 
-    registrador_por = models.ForeignKey(
+    registrado_por = models.ForeignKey(
         'porteiros.Porteiro',
         verbose_name='Porteiro responsavel pelo registro',
         on_delete= models.PROTECT
